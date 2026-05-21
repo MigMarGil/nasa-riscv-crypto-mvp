@@ -1,0 +1,14 @@
+# Build artifacts
+simv
+simv_core
+simv_if
+*.vcd
+
+# Packaged artifacts
+dist/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
