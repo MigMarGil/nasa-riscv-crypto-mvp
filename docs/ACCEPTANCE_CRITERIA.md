@@ -1,18 +1,29 @@
 # Acceptance Criteria
 
-## Functional
-- El coprocesador procesa una ronda ASCON por operación solicitada.
-- `done_o` se activa exactamente un ciclo al finalizar.
-- `busy_o` permanece activo durante la ejecución.
-- Ante inyección de fallo de 1 bit, `fault_detected_o` debe ser `1`.
-- Sin inyección de fallo, `fault_detected_o` debe ser `0`.
+## Functional Criteria
+1. Coprocessor processes one ASCON round per request.
+2. `done_o` asserts for exactly one cycle at completion.
+3. `busy_o` remains asserted during active execution.
+4. With single-bit injected fault, `fault_detected_o` must assert.
+5. Without injected fault, `fault_detected_o` must remain deasserted.
 
-## Verification
-- `make golden` produce salida determinista del modelo de referencia.
-- `make test` finaliza con `[PASS] Extended regression completed`.
-- Regresión incluye casos nominales, fault-injection y barrido de 32 variantes.
+## Interface Criteria
+1. `rv_custom_ascon_if` correctly decodes the custom-op path used by the testbench.
+2. Interface testbench completes with explicit PASS status.
 
-## Deliverable quality
-- Estructura modular (`rtl/`, `tb/`, `scripts/`, `docs/`).
-- Documentación técnica trazable y orientada a revisión.
-- Paquete generado con `make package`.
+## Verification Criteria
+1. `make golden` executes successfully and is deterministic for fixed vectors.
+2. `make test_core` completes with PASS status.
+3. `make test_if` completes with PASS status.
+4. `make verify` completes end-to-end with no simulation errors.
+
+## Packaging Criteria
+1. `make package` creates `dist/nasa-riscv-crypto-mvp.tar.gz`.
+2. Archive includes `README.md`, `Makefile`, `rtl/`, `tb/`, `scripts/`, `docs/`.
+
+## Documentation Criteria
+1. SOW, technical note, delivery notes, risk register, and handoff checklist are present.
+2. Known limitations are explicitly stated.
+
+## Non-Criteria (Explicit)
+- This MVP does not imply certification, flight readiness, export approval, or procurement award.

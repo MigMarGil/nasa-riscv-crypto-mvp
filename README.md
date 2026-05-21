@@ -1,18 +1,21 @@
-# RISC-V ASCON Coprocessor (NASA-Oriented Deliverable)
+# RISC-V ASCON Coprocessor MVP
 
-Proyecto técnico orientado a sistemas críticos: acelerador criptográfico ligero en RTL con integración RISC-V custom instruction, verificación reproducible y documentación de entrega profesional.
+Engineering deliverable package for evaluation in safety- and mission-critical embedded systems.
 
-## Arquitectura
-- [rtl/ascon_round_core.sv](rtl/ascon_round_core.sv): una ronda ASCON (320-bit state).
-- [rtl/riscv_ascon_coprocessor.sv](rtl/riscv_ascon_coprocessor.sv): wrapper secuencial con `start/busy/done` y detección de corrupción por recomputación.
-- [rtl/rv_custom_ascon_if.sv](rtl/rv_custom_ascon_if.sv): interfaz tipo RISC-V `custom0` para invocar el acelerador desde pipeline integer.
+## Scope
+- ASCON round RTL core in SystemVerilog.
+- Sequential coprocessor wrapper with `start/busy/done` handshake.
+- Temporal recomputation-based corruption detection signal.
+- RISC-V `custom0` style interface module.
+- Reproducible verification flow and release packaging.
 
-## Verificación
-- [tb/tb_riscv_ascon_coprocessor.sv](tb/tb_riscv_ascon_coprocessor.sv): regresión del coprocesador.
-- [tb/tb_rv_custom_ascon_if.sv](tb/tb_rv_custom_ascon_if.sv): test de integración instrucción custom.
-- [scripts/ascon_golden.py](scripts/ascon_golden.py): vector dorado de referencia.
+## Repository Structure
+- `rtl/`: hardware modules.
+- `tb/`: testbenches and regression scenarios.
+- `scripts/`: golden-reference helper tools.
+- `docs/`: contractual and technical delivery documents.
 
-## Comandos
+## Build and Verification
 ```bash
 make golden
 make test_core
@@ -21,9 +24,14 @@ make verify
 make package
 ```
 
-## Entrega
-- Criterios: [docs/ACCEPTANCE_CRITERIA.md](docs/ACCEPTANCE_CRITERIA.md)
-- Notas de entrega: [docs/DELIVERY_NOTES.md](docs/DELIVERY_NOTES.md)
-- Plan NASA-ready: [docs/NASA_READY_ROADMAP.md](docs/NASA_READY_ROADMAP.md)
-- Plantilla de métricas: [docs/METRICS_TEMPLATE.md](docs/METRICS_TEMPLATE.md)
-- Texto CV/LinkedIn: [docs/LINKEDIN_CV_BULLETS.md](docs/LINKEDIN_CV_BULLETS.md)
+## Deliverable Documents
+- `docs/STATEMENT_OF_WORK.md`
+- `docs/ACCEPTANCE_CRITERIA.md`
+- `docs/DELIVERY_NOTES.md`
+- `docs/TECHNICAL_NOTE.md`
+- `docs/METRICS_TEMPLATE.md`
+- `docs/RISK_REGISTER.md`
+- `docs/HANDOFF_CHECKLIST.md`
+
+## Important Commercial Note
+This repository is a technical MVP and evaluation deliverable. It is not, by itself, a procurement contract, award, or guarantee of engagement with NASA or any other organization.

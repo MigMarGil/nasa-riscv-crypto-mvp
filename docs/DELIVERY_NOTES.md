@@ -1,18 +1,24 @@
 # Delivery Notes
 
-## Scope (MVP)
-- Núcleo de ronda ASCON en SystemVerilog.
-- Wrapper secuencial con handshake y comprobación de integridad por duplicación temporal.
-- Banco de pruebas con regresión extendida.
-- Modelo dorado Python para referencia funcional de una ronda.
+## Delivered MVP Scope
+- ASCON round core in SystemVerilog.
+- Sequential coprocessor control with `start/busy/done`.
+- Temporal recomputation-based corruption detection output.
+- RISC-V custom-instruction style interface test module.
+- Regression and packaging automation via Makefile.
 
-## Known limitations
-- Implementa una sola ronda por operación (no pipeline multi-ronda completo).
-- Detección sin corrección de errores.
-- Sin síntesis PPA incluida en este paquete.
+## Validation Summary
+This package is considered acceptable when all criteria in `docs/ACCEPTANCE_CRITERIA.md` are met and commands in `README.md` execute successfully.
 
-## Recommended next phase
-1. Integrar interfaz custom instruction con core RISC-V objetivo.
-2. Añadir suite de vectores NIST ASCON completos.
-3. Ejecutar lint formal (verilator/slang) y cobertura funcional.
-4. Añadir resultados de síntesis FPGA (LUT/FF/Fmax) y estimación energética.
+## Known Limitations
+- Single-round operation per request (no full multi-round acceleration pipeline).
+- Error detection signal only; no correction path.
+- No formal verification sign-off in this delivery.
+- No synthesis-based timing/area/power sign-off in this delivery.
+
+## Recommended Next Phase
+1. Multi-round architecture and complete ASCON operation support.
+2. NIST vector integration and conformance matrix.
+3. Formal properties and coverage closure.
+4. FPGA/ASIC synthesis and power-performance characterization.
+5. Integration into selected RISC-V core with software driver path.

@@ -1,24 +1,35 @@
-# Metrics Template (Fill after FPGA run)
+# Metrics Template
 
-## Functional
-- Tests core pass/fail:
-- Tests interface pass/fail:
-- Golden vector match:
+## Execution Metadata
+- Date:
+- Commit SHA:
+- Tool versions (`iverilog`, `vvp`):
+- Host environment:
 
-## Performance
-- Cycles per ASCON round:
-- Max frequency (MHz):
-- Throughput (rounds/s):
+## Functional Validation
+- `make golden`: PASS/FAIL
+- `make test_core`: PASS/FAIL
+- `make test_if`: PASS/FAIL
+- `make verify`: PASS/FAIL
 
-## Resource usage
-- LUTs:
-- FFs:
-- BRAM:
-
-## Reliability
-- Injected 1-bit fault detection rate (%):
+## Correctness and Robustness
+- Nominal vector pass rate (%):
+- Single-bit injected fault detection rate (%):
 - False positive rate (%):
 
-## Power
-- Dynamic power estimate (mW):
+## Performance (When Available)
+- Cycles per round:
+- Estimated max frequency (MHz):
+- Effective throughput (rounds/s):
+
+## Resource Usage (When Available)
+- LUT:
+- FF:
+- BRAM:
+
+## Power/Energy (When Available)
+- Dynamic power (mW):
 - Energy per round (nJ):
+
+## Notes
+- Deviations and caveats:
