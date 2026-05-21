@@ -1,21 +1,30 @@
-# Technical Note (v0)
+# Technical Note (v1)
 
-## Contexto
-Sistemas espaciales operan bajo restricción energética y exposición a SEU (single event upsets). Un acelerador dedicado reduce consumo por operación criptográfica y mejora previsibilidad temporal.
+## Problem Context
+Mission and safety-critical embedded systems require predictable cryptographic operations under strict power and robustness constraints. Hardware acceleration can reduce software overhead and improve timing determinism.
 
-## Modelo de fallo
-Este MVP usa inyección de fallo por flip de 1 bit y comprobación de paridad global para detectar corrupción.
+## Implemented Architecture
+- `ascon_round_core.sv`: combinational/round transformation over 320-bit state.
+- `riscv_ascon_coprocessor.sv`: sequential control shell with handshake and temporal recomputation check.
+- `rv_custom_ascon_if.sv`: RISC-V custom instruction style integration stub/interface.
 
-Limitaciones actuales:
-- La paridad detecta número impar de errores, no todos los patrones múltiples.
-- No existe corrección, solo detección.
+## Reliability Strategy
+The design includes temporal recomputation and result comparison to raise `fault_detected_o` under mismatch conditions.
 
-## Plan de validación
-- Pruebas funcionales por ronda.
-- Pruebas de robustez para múltiples posiciones de bit.
-- Cobertura de estados FSM (`IDLE`, `EXEC`, `DONE`).
+## Verification Strategy
+- Golden-reference script for repeatable check vectors.
+- Core regression with nominal and fault-injection cases.
+- Interface integration test for custom instruction path behavior.
 
-## Métricas a reportar en una versión extendida
-- Latencia por ronda y throughput efectivo.
-- LUT/FF (FPGA) o área equivalente (ASIC).
-- Energía por operación (estimada por switching activity + P&R).
+## Known Technical Limits
+- One ASCON round per operation in current MVP.
+- Detection-oriented robustness, not correction.
+- No formal proof package included.
+- No FPGA/ASIC post-synthesis PPA report included.
+
+## Path to Production Readiness
+1. Multi-round and parameterized latency pipeline.
+2. Official NIST ASCON vectors and expanded conformance coverage.
+3. Assertions/coverage closure and formal checks.
+4. FPGA synthesis/timing/power characterization.
+5. Target-core integration (for example CV32E40P/PicoRV32/VexRiscv).
