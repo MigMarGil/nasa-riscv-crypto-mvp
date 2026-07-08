@@ -1,5 +1,6 @@
 # Build artifacts
 simv
+simv*
 simv_core
 simv_if
 *.vcd
