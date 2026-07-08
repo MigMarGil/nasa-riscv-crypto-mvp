@@ -19,6 +19,10 @@ test_if:
 	$(SIM) -g2012 -Wall -Wimplicit -o simv_if $(RTL_IF) $(TB_IF)
 	vvp simv_if
 
+test_visual:
+	$(SIM) -g2012 -Wall -Wimplicit -o simv_visual rtl/ascon_round_core.sv rtl/riscv_ascon_coprocessor.sv tb/tb_visual_demo.sv
+	vvp simv_visual
+
 test: test_core test_if
 
 verify: golden test

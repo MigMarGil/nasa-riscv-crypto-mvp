@@ -20,9 +20,13 @@ Engineering deliverable package for evaluation in safety- and mission-critical e
 make golden
 make test_core
 make test_if
+make test_visual    # compact visual demo
 make verify
 make package
 ```
+
+Visual demo:
+ - `tb/tb_visual_demo.sv` proporciona una ejecución compacta y legible que muestra el flujo nominal y un caso con inyección de fallo. Ejecutar `make test_visual` para ver la salida.
 
 ## Deliverable Documents
 - `docs/STATEMENT_OF_WORK.md`
